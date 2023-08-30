@@ -14,6 +14,7 @@ namespace NoviceChallenges
             string word2;
             string word3;
             int[] nums = { 43, 9, 52, 75, 12, 80, 234, 65 };
+            char he = 'o';
 
             Random rnd = new Random();
             number = rnd.Next(1, 15);
@@ -33,6 +34,10 @@ namespace NoviceChallenges
             Console.WriteLine($"The Fibonacci number in the {number}th position is {Fibonacci(number)}");
             Console.WriteLine($"The largest number in the given integer array is {LargestInArray(nums)}");
             Console.WriteLine($"The word {word3} is a palindrome: {IsPalindrome(word3)}");
+            Console.WriteLine($"The sum of the given integer array is {ArraySum(nums)}");
+            Console.WriteLine($"The letter '{he}' appears in the phrase ''{words}'' {CharCount(words, he)} times.");
+            Console.WriteLine(ConcatenateStrings(words, word2));
+            Console.WriteLine($"Swapping the ending characters of the first phrase would give you: {SwapEnds(words)}");
 
         }
 
@@ -156,23 +161,28 @@ namespace NoviceChallenges
         public static bool IsPalindrome(string s)
         {
             char[] word = s.ToCharArray();
-            char[] aword = new char[word.Length];
-            for (int i = 0; i <= word.Length-1; i++)
+            for (int i = 0; i <= word.Length - 1; i++)
             {
-                aword[i] = word[i];
-                if (word[i] != aword[i])
+                for (int l = word.Length - 1; l >= 0; l--)
                 {
-                    return false;
+                    if (word[i] != word[l])
+                    {
+                        return false;
+                    }
+                    i++;
                 }
             }
-                return true;
+            return true;
         }
 
         // 12. Given an array of integers, return the sum of its elements.
         public static int ArraySum(int[] numbers)
         {
             int sum = 0;
-            // TODO: Calculate the sum of the array's elements.
+            for (int i = 0; i <= numbers.Length - 1; i++)
+            {
+                sum += numbers[i];
+            }
             return sum;
         }
 
@@ -180,25 +190,40 @@ namespace NoviceChallenges
         public static int CharCount(string s, char c)
         {
             int count = 0;
-            // TODO: Count how many times character c appears in string s.
+            char[] letter = s.ToCharArray();
+            for (int i = 0; i <= letter.Length - 1; i++)
+            {
+                if (letter[i] == c)
+                {
+                    count++;
+                }
+            }
             return count;
         }
 
         // 14. Given two strings, return a new string that is the concatenation of the two strings with a space in between.
         public static string ConcatenateStrings(string str1, string str2)
         {
-            // TODO: Concatenate the two strings with a space in between.
-            return "";
+            string combo = str1 + ' ' + str2;
+            return combo;
         }
 
         // 15. Given a string, return a new string where the first and last characters have been swapped.
         public static string SwapEnds(string s)
         {
             if (s.Length <= 1) return s;
-            char firstChar = s[0];
-            char lastChar = s[s.Length - 1];
-            // TODO: Swap the first and last characters and return the modified string.
-            return "";
+            char[] lets = s.ToCharArray();
+            char[] l = new char[lets.Length];
+            char firstChar = lets[0];
+            char lastChar = s[lets.Length - 1];
+            l[0] = lastChar;
+            for (int i = 1; i <= l.Length - 1; i++)
+            {
+                l[i] = lets[i];
+            }
+            l[l.Length-1] = firstChar;
+            string st = new(l);
+            return st;
         }
     }
 }
