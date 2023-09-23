@@ -44,19 +44,13 @@ namespace NoviceChallenges
         // 1. Return the sum of two numbers.
         public static int Add(int a, int b)
         {
-            int total;
-            total = a + b;
-            return total;
+            return a + b;
         }
 
         // 2. Given an integer, return true if it's even, else return false.
         public static bool IsEven(int number)
         {
-            if (number % 2 == 0)
-            {
-                return true;
-            }
-            return false;
+            return number % 2 == 0;
         }
 
         // 3. Return the largest of three numbers.
@@ -85,6 +79,9 @@ namespace NoviceChallenges
         public static bool StartsHello(string s)
         {
             return s.StartsWith("Hello");
+
+            // Additional answer to handles any casing situation:
+            return s.ToLower().StartsWith("hello");
         }
 
         // 6. Reverse a given string.
@@ -204,8 +201,7 @@ namespace NoviceChallenges
         // 14. Given two strings, return a new string that is the concatenation of the two strings with a space in between.
         public static string ConcatenateStrings(string str1, string str2)
         {
-            string combo = str1 + ' ' + str2;
-            return combo;
+            return str1 + ' ' + str2;
         }
 
         // 15. Given a string, return a new string where the first and last characters have been swapped.
@@ -221,7 +217,7 @@ namespace NoviceChallenges
             {
                 l[i] = lets[i];
             }
-            l[l.Length-1] = firstChar;
+            l[l.Length - 1] = firstChar;
             string st = new(l);
             return st;
         }
